@@ -1,0 +1,67 @@
+<% layout("./boilerplate.ejs") -%>
+<br>
+<body><form method="post" action="/post" class="needs-validation" novalidate>
+    <div class="row">
+        <div class="col-8 offset-2">
+            <h3>Create New Listing</h3>
+    <div class="mb-3" >
+        <label for="title" class="form-label">Title</label>
+        <input type="text" placeholder="Add a Cathcy Title" name="listing[title]" class="form-control" required>
+        <div class="valid-feedback">
+           Title Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please Provide a Title
+           </div>
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea type="text" name="listing[description]"class="form-control" required></textarea>
+        <div class="valid-feedback">
+            Description is OK!
+           </div>
+           <div class="invalid-feedback">
+             Please Provide a Description
+            </div>
+    </div>
+    <div class="row">
+        <div class="mb-3 col-4">
+            <label for="price" class="form-label">Price</label>
+            <input type="text" name="listing[price]" type="number" placeholder="Price" class="form-control" required>
+            <div class="valid-feedback">
+                Price is OK
+               </div>
+               <div class="invalid-feedback">
+                 Please Enter Price
+                </div>
+        </div>
+        <div class="mb-3 col-8">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" name="listing[location]" placeholder="Location" class="form-control" required>
+            <div class="valid-feedback">
+                 Looks good!
+               </div>
+               <div class="invalid-feedback">
+                 Please Provide a Location
+                </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="image" class="form-label">Image</label>
+        <input type="text" name="listing[image][url]" placeholder="link/url" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="country" class="form-label">Country</label>
+        <input type="text" name="listing[country]" placeholder="Country" class="form-control" required>
+        <div class="valid-feedback">
+            Looks good!
+           </div>
+           <div class="invalid-feedback">
+             Please Provide a Country
+            </div>
+    </div>
+        <button class="btn btn-danger">Add</button>
+    </div>
+    </div>
+</form>
+</body>

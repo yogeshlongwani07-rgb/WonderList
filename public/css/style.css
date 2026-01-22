@@ -1,0 +1,58 @@
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container{
+    flex: 1;
+}
+
+.fa-compass{
+    color: #fe424d;
+    font-size: 2rem;
+}
+
+.nav-link{
+    color: #222222 !important;
+}
+
+.navbar{
+    background-color: white;
+}
+a{
+    text-decoration: none;
+}
+
+.listing-card{
+    border: none !important;
+    margin-bottom: 2rem !important;
+}
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+.card-body{
+    padding: 0%;
+}
+.card-text p{
+    font-weight: 400 !important;
+}
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    opacity: 0.1;
+    background-color: white;
+}
+.card-img-top{
+    height: 200px;
+    width: 200px;
+}
+.fle{
+    display: flex;
+}
+.flw{
+    margin-right: 1rem;
+}
