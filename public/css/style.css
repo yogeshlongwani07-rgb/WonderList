@@ -18,6 +18,19 @@ body{
     gap: 1rem;
 }
 
+
+.navbar-toggler{
+    border: 1px solid #d8d8d8;
+}
+
+.navbar-toggler:focus{
+    box-shadow: none;
+}
+
+.navbar-toggler-icon{
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(34, 34, 34, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.1' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
 a{
     text-decoration: none;
 }
@@ -89,6 +102,7 @@ background: linear-gradient(135deg, #ff5a65, #ff385c);
     padding: 0.22rem 0.75rem;
     border-radius: 999px;
     transition: background-color 0.2s ease;
+     position: relative;
 }
 
 .search-field-group:hover{
@@ -121,7 +135,7 @@ background: linear-gradient(135deg, #ff5a65, #ff385c);
     position: absolute;
     top: calc(100% + 0.6rem);
     left: 0;
-    width: 100%;
+    width: min(100%, 30rem);
     background: #fff;
     border: 1px solid #ececec;
     border-radius: 0.9rem;
@@ -372,20 +386,25 @@ background: linear-gradient(135deg, #0f8f68, #0a6a57);
     margin: 1rem 0 0.5rem;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.8rem;
+    gap: 1rem;
 }
 
 .highlight-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background: #fff;
     border: 1px solid #ececec;
     border-radius: 0.85rem;
-    padding: 0.9rem 0.95rem;
+    padding: 0.82rem 0.95rem;
+    min-height: 5.2rem;
+    min-height: 7.2rem;
     box-shadow: 0 6px 14px rgba(0,0,0,0.05);
 }
 
 .highlight-card h3{
-    font-size: 1rem;
-    margin-bottom: 0.35rem;
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
 }
 
 .highlight-card p{
