@@ -2,23 +2,23 @@
 <nav class="navbar navbar-expand-lg border-bottom sticky-top">
   <div class="container-fluid nav-main">
     <a class="navbar-brand brand-logo" href="/start">
-      <span class="brand-mark">WL</span>
+<span class="brand-mark"><i class="fa-solid fa-compass"></i></span>
       <span class="brand-text">WonderList</span>
     </a>
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"></button>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav nav-left-links">
-        <a class="nav-link active" aria-current="page" href="/listings">Discover Stays</a>
+<a class="nav-link active nav-highlight-link" aria-current="page" href="/listings">Explore Stays</a>
       </div>
 
       <div class="nav-center">
         <form class="airbnb-search-bar" role="search" action="/listings" method="GET">
           <div class="search-field-group">
             <label for="where" class="search-label">Where</label>
-            <input id="where" name="destination" class="search-field" type="text" placeholder="Search destinations">
+<input id="where" name="destination" class="search-field" type="text" placeholder="Search destinations" autocomplete="off">
+            <div id="destination-suggestions" class="destination-suggestions" role="listbox" aria-label="Destination suggestions"></div>
           </div>
 
           <div class="search-divider"></div>
@@ -37,7 +37,7 @@
       <div class="navbar-nav nav-actions ms-lg-auto">
         <% const hasUser = typeof currUser !== "undefined" && currUser; %>
         <a class="nav-link host-link" href="/listings/new">List Your Stay</a>
-        <a class="btn restaurant-btn" href="https://www.google.com/search?q=best+restaurants+near+me" target="_blank" rel="noopener noreferrer">Find Restro</a>
+<a class="btn restaurant-btn" href="https://restro-data-xkg3.vercel.app/" target="_blank" rel="noopener noreferrer">Find Restro</a>
         <%if(!hasUser){%>
           <a class="btn auth-btn auth-signup" href="/signup">Sign Up</a>
           <a class="btn auth-btn auth-login" href="/login">Log in</a>
@@ -45,5 +45,6 @@
         <%if(hasUser){%>
           <a class="nav-link" href="/logout"><b>Logout</b></a>
         <%}%>
+         </div>
     </div>
   </nav>
