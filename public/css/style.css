@@ -2,46 +2,208 @@ body{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background: #ffffff;
 }
 
 .container{
     flex: 1;
 }
 
-.fa-compass{
-    color: #fe424d;
-    font-size: 2rem;
+.navbar{
+    background-color: #f3f3f4;
+    min-height: 5.4rem;
+}
+
+.nav-main{
+    gap: 1rem;
+}
+
+a{
+    text-decoration: none;
 }
 
 .nav-link{
     color: #222222 !important;
 }
 
-.navbar{
-    background-color: white;
+.brand-logo{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
 }
-a{
-    text-decoration: none;
+
+.brand-mark{
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 0.6rem;
+    background: linear-gradient(135deg, #ff5a65, #ff385c);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    letter-spacing: 0.02rem;
+}
+
+.brand-text{
+    color: #ff385c;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.nav-left-links{
+    min-width: 8.5rem;
+}
+
+.nav-center{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.airbnb-search-bar{
+    width: min(100%, 780px);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: #fff;
+    border: 1px solid #dddddd;
+    border-radius: 999px;
+    padding: 0.5rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.search-field-group{
+    flex: 1;
+    min-width: 0;
+    padding: 0.22rem 0.75rem;
+    border-radius: 999px;
+    transition: background-color 0.2s ease;
+}
+
+.search-field-group:hover{
+    background-color: #f6f6f6;
+}
+
+.search-label{
+    display: block;
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: #1f1f1f;
+    margin-bottom: 0.05rem;
+}
+
+.search-field{
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #555;
+    background-color: transparent;
+}
+
+.date-field{
+    min-height: 1.7rem;
+}
+
+.search-divider{
+    width: 1px;
+    height: 2.4rem;
+    background-color: #e4e4e4;
+}
+
+.search-pill-btn{
+    border: none;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    background: #ff385c;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.search-pill-btn:hover{
+    background: #e13053;
+}
+
+.nav-actions{
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.host-link{
+    font-weight: 600;
+}
+
+.restaurant-btn{
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+    color: #fff;
+    background: linear-gradient(135deg, #444, #222);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.restaurant-btn:hover{
+    color: #fff;
+    opacity: 0.95;
+}
+
+.auth-btn{
+    border-radius: 999px;
+    padding: 0.36rem 0.9rem;
+    font-weight: 600;
+    font-size: 0.88rem;
+}
+
+.auth-signup{
+    background: #ff385c;
+    color: #fff;
+}
+
+.auth-signup:hover{
+    color: #fff;
+    background: #e13053;
+}
+
+.auth-login{
+    border: 1px solid #222;
+    color: #222;
+}
+
+.auth-login:hover{
+    background: #222;
+    color: #fff;
 }
 
 .listing-card{
     border: none !important;
     margin-bottom: 2rem !important;
 }
+
 .card-img-top{
     border-radius: 1rem !important;
     width: 100% !important;
     object-fit: cover !important;
+    height: 200px;
 }
+
 .card-body{
     padding: 0%;
 }
+
 .card-text p{
     font-weight: 400 !important;
 }
+
 .card-img-overlay{
     opacity: 0;
 }
+
 .card-img-overlay:hover{
     opacity: 0.1;
     background-color: white;
@@ -50,9 +212,169 @@ a{
     height: 200px;
     width: 200px;
 }
+
 .fle{
     display: flex;
 }
+
 .flw{
     margin-right: 1rem;
+}
+
+
+.site-footer{
+    margin-top: 2rem;
+    text-align: center;
+    padding: 1.4rem 1rem;
+    background: linear-gradient(120deg, #121212, #242424);
+    color: #f3f3f3;
+    border-top: 4px solid #fe424d;
+}
+
+.footer-social{
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-bottom: 0.7rem;
+}
+
+.footer-social a{
+    color: #fff;
+    font-size: 1.25rem;
+}
+
+.footer-title{
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+}
+
+.footer-links{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.footer-links a{
+    color: #f3f3f3;
+    font-weight: 500;
+}
+
+.footer-links a:hover{
+    text-decoration: underline;
+}
+
+.welcome-hero{
+    position: relative;
+    margin-top: 1.25rem;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    min-height: 58vh;
+    background: linear-gradient(135deg, #fd5f67, #ff8b5f 45%, #222 130%);
+    display: flex;
+    align-items: center;
+}
+
+.welcome-overlay{
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.25), transparent 45%);
+}
+
+.welcome-content{
+    position: relative;
+    padding: 2.35rem;
+    max-width: 680px;
+    color: #fff;
+}
+
+.welcome-tag{
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+}
+
+.welcome-content h1{
+    font-size: clamp(1.9rem, 3.7vw, 2.8rem);
+    margin-bottom: 0.85rem;
+    line-height: 1.15;
+}
+
+.welcome-subtitle{
+    font-size: 1rem;
+    opacity: 0.95;
+    margin-bottom: 1.2rem;
+}
+
+.welcome-actions{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.welcome-highlights{
+    margin: 1rem 0 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.8rem;
+}
+
+.highlight-card{
+    background: #fff;
+    border: 1px solid #ececec;
+    border-radius: 0.85rem;
+    padding: 0.9rem 0.95rem;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+}
+
+.highlight-card h3{
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+}
+
+.highlight-card p{
+    margin: 0;
+    color: #5b5b5b;
+    font-size: 0.92rem;
+}
+
+@media (max-width: 991px){
+    .navbar{
+        min-height: auto;
+    }
+
+    .navbar-collapse{
+        padding-top: 0.5rem;
+    }
+
+    .nav-center{
+        width: 100%;
+        order: 3;
+        margin: 0.6rem 0;
+    }
+
+    .airbnb-search-bar{
+        border-radius: 1rem;
+    }
+
+    .search-divider{
+        display: none;
+    }
+
+    .nav-actions{
+        flex-wrap: wrap;
+    }
+
+    .welcome-content{
+        padding: 1.8rem 1.15rem;
+    }
+
+    .welcome-highlights{
+        grid-template-columns: 1fr;
+        gap: 0.65rem;
+    }
+
+    .highlight-card{
+        padding: 0.8rem;
+    }
 }
