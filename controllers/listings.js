@@ -3,8 +3,21 @@ const Reviews = require("../models/reviews");
 const ExpressError = require("../utils/ExpressError");
 
 module.exports.index = async (req, res) => {
+  const hasSearchAttempt = "destination" in req.query || "date" in req.query;
+  const selectedFilter = req.query.filter;
+
+  if (hasSearchAttempt || selectedFilter) {
+    const noListingsMessage =
+      "Oops! Even our travel pigeons came back empty-handed — no stays matched this search yet.";
+
+    return res.render("index.ejs", {
+      allListings: [],
+      noListingsMessage,
+      selectedFilter,
+    });
+  }
   const allListings = await list.find({});
-  res.render("index.ejs", { allListings });
+  res.render("index.ejs", { allListings, selectedFilter: null });
 };
 
 module.exports.indexApi = async (req, res) => {

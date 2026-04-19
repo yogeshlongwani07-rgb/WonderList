@@ -7,6 +7,7 @@
     flex-wrap: wrap;
     align-items: center;
      gap: 0.6rem;
+     text-decoration: none;
   }
   .filter{
     text-align: center;
@@ -17,6 +18,18 @@
     font-size: 0.85rem;
     color: #4f4f4f;
     transition: all 0.2s ease;
+  }
+  .no-results-card{
+    margin-top: 2rem;
+    border: 1px dashed #d1d1d1;
+    border-radius: 1rem;
+    background: #fff;
+    padding: 1.5rem;
+  }
+  .filter.active{
+    color: #fff;
+    border-color: #222;
+    background: #222;
   }
   .filter:hover{
     cursor: pointer;
@@ -79,8 +92,23 @@
 
 </style>
 
+<%
+  const filters = [
+    "Trending",
+    "Rooms",
+    "Iconic Cities",
+    "Mountains",
+    "Castles",
+    "Amazing Pools",
+    "Camping",
+    "Farms",
+    "Snow",
+    "Peaceful Places",
+  ];
+%>
+
 <div id="filters">
-  <div class="filter"><p>Trending</p></div>
+  <!-- <div class="filter"><p>Trending</p></div>
   <div class="filter"><p>Rooms</p></div>
   <div class="filter"><p>Iconic Cities</p></div>
   <div class="filter"><p>Mountains</p></div>
@@ -89,7 +117,15 @@
   <div class="filter"><p>Camping</p></div>
   <div class="filter"><p>Farms</p></div>
   <div class="filter"><p>Snow</p></div>
-  <div class="filter"><p>Peaceful Places</p></div>
+  <div class="filter"><p>Peaceful Places</p></div> -->
+  <% filters.forEach((filterName) => { %>
+    <a
+      href="/listings?filter=<%= encodeURIComponent(filterName) %>"
+      class="filter <%= selectedFilter === filterName ? 'active' : '' %>"
+    >
+      <p><%= filterName %></p>
+    </a>
+  <% }) %>
 
   <div class="travel-note">
     <div class="form-check form-switch mb-0">
@@ -101,7 +137,12 @@
     </label>
   </div>
 </div>
-<body>
+  <% if (allListings.length === 0) { %>
+  <section class="no-results-card">
+    <h4>Nothing matched your refined search ✨</h4>
+<p class="mb-0"><%= noListingsMessage || "Try broadening your filters to uncover listings that better fit your style." %></p>
+  </section>
+<% } else { %>
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
     <% for(let list of allListings){%>
       <a href="/listings/<%=list._id%>">
@@ -116,7 +157,7 @@
       </a>
         <%}%>  
   </div>
-</body>
+  <% } %>
 <script>
   let taxSwitch = document.getElementById("flexSwitchCheckChecked");
   taxSwitch.addEventListener("click",()=>{

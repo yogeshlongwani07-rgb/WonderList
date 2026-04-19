@@ -1,70 +1,438 @@
 <% layout("./boilerplate.ejs") -%>
-<body>
-    <div class="row">
-        <div class="col-8 offset-2">
-    <h3>Edit Your Listing</h3>
-    <form method="post" action="/post/<%=getId._id%>/edit?_method=PATCH" novalidate class="needs-validation">
-        <div class="mb-3" >
-            <label for="title" class="form-label">Title</label>
-            <input type="text" placeholder="title" name="listing[title]" value="<%=getId.title%>" class="form-control" required>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-              <div class="invalid-feedback">
-                Proivde The Value!
-              </div>
-        </div>
-        <div class="mb-3" >
-            <label for="description" class="form-label">Description</label>
-            <input type="text" name="listing[description]" placeholder="description" class="form-control" value="<%=getId.description%>" required>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-              <div class="invalid-feedback">
-                Proivde The Value!
-              </div>
-        </div>
-        <div class="mb-3" >
-            <label for="price" class="form-label">Price</label>
-            <input type="text" name="listing[price]" type="number" placeholder="price" class="form-control" value="<%=getId.price%>" required>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-              <div class="invalid-feedback">
-                Proivde The Value!
-              </div>
-        </div>
-        <div class="mb-3" >
-            <label for="location" class="form-label">Location</label>
-            <input type="text" name="listing[location]" placeholder="location" class="form-control" value="<%=getId.location%>" required>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-              <div class="invalid-feedback">
-                Proivde The Value!
-              </div>
-        </div>
-        <div class="mb-3" >
-            <label for="image" class="form-label">Image</label>
-            <input type="text" name="listing[image][url]" placeholder="link/url" value="<%=getId.image.url%>" class="form-control" required>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-              <div class="invalid-feedback">
-                Proivde The Value!
-              </div>
-        </div>
-        <div class="mb-3" >
-            <label for="country" class="form-label">Country</label>
-            <input type="text" name="listing[country]" placeholder="country" class="form-control" value="<%=getId.country%>" required>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-              <div class="invalid-feedback">
-                Proivde The Value!
-              </div>
-        </div>
-        <button class="btn btn-danger">Edit</button><br><br>
-    </div>  
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap");
+
+  .edit-page {
+    min-height: 100vh;
+    background: #f7f5f2;
+    padding: 3rem 1rem;
+    font-family: "DM Sans", sans-serif;
+  }
+
+  .edit-card {
+    max-width: 680px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 2px 40px rgba(0, 0, 0, 0.07);
+  }
+
+  .edit-card-header {
+    background: #1a1a2e;
+    padding: 2.5rem 2.8rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .edit-card-header::before {
+    content: "";
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 56, 92, 0.15);
+    border-radius: 50%;
+  }
+
+  .edit-card-header::after {
+    content: "";
+    position: absolute;
+    bottom: -40px;
+    left: 30%;
+    width: 140px;
+    height: 140px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 50%;
+  }
+
+  .edit-eyebrow {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #ff385c;
+    font-weight: 500;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .edit-heading {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    line-height: 1.2;
+  }
+
+  .edit-subtext {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.45);
+    margin-top: 6px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .edit-card-body {
+    padding: 2.5rem 2.8rem;
+  }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .field-row.full {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group {
+    margin-bottom: 0;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 8px;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid #ebebeb;
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: "DM Sans", sans-serif;
+    color: #1a1a2e;
+    background: #fafafa;
+    transition:
+      border-color 0.2s,
+      background 0.2s,
+      box-shadow 0.2s;
+    outline: none;
+  }
+
+  .form-group input:focus {
+    border-color: #1a1a2e;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(26, 26, 46, 0.06);
+  }
+
+  .form-group input.is-invalid {
+    border-color: #ff385c;
+    background: #fff9f9;
+  }
+
+  .form-group input.is-valid {
+    border-color: #22c55e;
+    background: #f9fff9;
+  }
+
+  .feedback {
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+  }
+
+  .was-validated .form-group input:valid ~ .valid-fb,
+  .form-group input.is-valid ~ .valid-fb {
+    display: block;
+    color: #22c55e;
+  }
+
+  .was-validated .form-group input:invalid ~ .invalid-fb,
+  .form-group input.is-invalid ~ .invalid-fb {
+    display: block;
+    color: #ff385c;
+  }
+
+  .fields-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(to right, #ebebeb, transparent);
+    margin: 8px 0;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ccc;
+    margin-bottom: 16px;
+  }
+
+  .price-input-wrap {
+    position: relative;
+  }
+
+  .price-symbol {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #aaa;
+    font-weight: 500;
+    pointer-events: none;
+  }
+
+  .price-input-wrap input {
+    padding-left: 28px;
+  }
+
+  .submit-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #f0f0f0;
+  }
+
+  .btn-edit {
+    background: #1a1a2e;
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    padding: 14px 36px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition:
+      background 0.2s,
+      transform 0.15s,
+      box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-edit:hover {
+    background: #ff385c;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(255, 56, 92, 0.3);
+  }
+
+  .btn-edit:active {
+    transform: translateY(0);
+  }
+
+  .btn-edit svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .btn-cancel {
+    font-size: 13px;
+    color: #aaa;
+    text-decoration: none;
+    font-family: "DM Sans", sans-serif;
+    transition: color 0.2s;
+  }
+
+  .btn-cancel:hover {
+    color: #1a1a2e;
+  }
+
+  .char-hint {
+    font-size: 11px;
+    color: #ccc;
+    margin-top: 4px;
+    text-align: right;
+  }
+
+  @media (max-width: 600px) {
+    .edit-card-header,
+    .edit-card-body {
+      padding: 2rem 1.5rem;
+    }
+    .field-row {
+      grid-template-columns: 1fr;
+    }
+    .edit-heading {
+      font-size: 1.6rem;
+    }
+  }
+</style>
+
+<div class="edit-page">
+  <div class="edit-card">
+    <div class="edit-card-header">
+      <p class="edit-eyebrow">WonderList</p>
+      <h2 class="edit-heading">Edit Your Listing</h2>
+      <p class="edit-subtext">
+        Update the details below to keep your stay accurate.
+      </p>
     </div>
-</body>
+
+    <div class="edit-card-body">
+      <form
+        method="post"
+        action="/post/<%=getId._id%>/edit?_method=PATCH"
+        novalidate
+        class="needs-validation"
+        id="editForm"
+      >
+        <div class="fields-grid">
+          <p class="section-label">Basic Info</p>
+
+          <div class="field-row full form-group">
+            <label for="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              placeholder="Give your stay a catchy name"
+              name="listing[title]"
+              value="<%=getId.title%>"
+              required
+            />
+            <span class="feedback valid-fb">&#10003; Looks great!</span>
+            <span class="feedback invalid-fb">Please provide a title.</span>
+          </div>
+
+          <div class="field-row full form-group">
+            <label for="description">Description</label>
+            <input
+              type="text"
+              id="description"
+              name="listing[description]"
+              placeholder="What makes your place special?"
+              value="<%=getId.description%>"
+              required
+            />
+            <span class="feedback valid-fb">&#10003; Looks great!</span>
+            <span class="feedback invalid-fb">Please add a description.</span>
+          </div>
+
+          <div class="field-row form-group">
+            <label for="price"
+              >Price
+              <span
+                style="
+                  font-weight: 300;
+                  text-transform: none;
+                  letter-spacing: 0;
+                "
+                >per night</span
+              ></label
+            >
+            <div class="price-input-wrap">
+              <span class="price-symbol">$</span>
+              <input
+                type="number"
+                id="price"
+                name="listing[price]"
+                placeholder="0"
+                value="<%=getId.price%>"
+                required
+              />
+            </div>
+            <span class="feedback valid-fb">&#10003; Set!</span>
+            <span class="feedback invalid-fb">Enter a valid price.</span>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <p class="section-label">Location</p>
+
+          <div class="field-row">
+            <div class="form-group">
+              <label for="location">City / Area</label>
+              <input
+                type="text"
+                id="location"
+                name="listing[location]"
+                placeholder="e.g. Goa, Bali"
+                value="<%=getId.location%>"
+                required
+              />
+              <span class="feedback valid-fb">&#10003; Got it!</span>
+              <span class="feedback invalid-fb">Enter a location.</span>
+            </div>
+            <div class="form-group">
+              <label for="country">Country</label>
+              <input
+                type="text"
+                id="country"
+                name="listing[country]"
+                placeholder="e.g. India"
+                value="<%=getId.country%>"
+                required
+              />
+              <span class="feedback valid-fb">&#10003; Got it!</span>
+              <span class="feedback invalid-fb">Enter a country.</span>
+            </div>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <p class="section-label">Media</p>
+
+          <div class="field-row full form-group">
+            <label for="image">Image URL</label>
+            <input
+              type="url"
+              id="image"
+              name="listing[image][url]"
+              placeholder="https://..."
+              value="<%=getId.image.url%>"
+              required
+            />
+            <span class="feedback valid-fb">&#10003; Link looks good!</span>
+            <span class="feedback invalid-fb">Provide a valid image URL.</span>
+          </div>
+        </div>
+
+        <div class="submit-row">
+          <a href="/listings/<%=getId._id%>" class="btn-cancel"
+            >&#8592; Discard changes</a
+          >
+          <button type="submit" class="btn-edit">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+            </svg>
+            Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const form = document.getElementById("editForm");
+    form.addEventListener("submit", function (e) {
+      if (!form.checkValidity()) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      form.classList.add("was-validated");
+    });
+  })();
+</script>
