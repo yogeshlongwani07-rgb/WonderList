@@ -7,6 +7,6 @@ const routeController = require("../controllers/listings");
 //Add listing to listings
 router.post("/", validateListing , AsyncWrap(routeController.addListing));
 
-router.patch("/:id/edit",AsyncWrap(routeController.newEdit));
+router.patch("/:id/edit",isLoggedIn, AsyncWrap(routeController.newEdit));
 
 module.exports = router;
