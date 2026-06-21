@@ -30,6 +30,7 @@ router.get("/:id", routeController.show);
 //Review
 router.post(
   "/:id/review",
+  isLoggedIn,
   validateReview,
   AsyncWrap(routeController.addReview),
 );
