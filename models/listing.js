@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const listingSchema1 = require("../Schema");
 const Reviews = require("./reviews");
 
 const listSchema = new mongoose.Schema({
