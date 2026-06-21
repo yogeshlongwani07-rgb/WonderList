@@ -16,7 +16,7 @@ const validateReview = (req,res,next)=>{
     if(error){
         console.log(error);
         const exactError = error.details.map((el)=>el.message).join(",");
-        throw new ExpressError(exactError,405);
+        throw new ExpressError(exactError,422);
     }else{
         next();
     }
@@ -28,7 +28,7 @@ const validateListing = (req,res,next)=>{
     if(error){
         console.log(error);
         const exactError = error.details.map((el)=>el.message).join(",");
-        throw new ExpressError(exactError,405);
+        throw new ExpressError(exactError,422);
     }else{
         next();
     }
