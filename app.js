@@ -85,7 +85,7 @@ main()
     console.log("Mongo OK");
   })
   .catch((err) => {
-    console.log("error");
+    console.log("error",err);
   });
 
 app.use("/listings", listings);
