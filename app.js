@@ -23,7 +23,6 @@ const User = require("./models/user.js");
 const passport = require("passport");
 const passportLocal = require("passport-local");
 const user = require("./Routes/user.js");
-require("dotenv").config();
 const dbUrl = process.env.ATLASPASS;
 
 const store = MongoStore.create({
