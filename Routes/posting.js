@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router({mergeParams:true});
 const AsyncWrap = require("../utils/Wrapasync");
-const {validateListing} = require("../middleware");
+const {validateListing , isLoggedIn} = require("../middleware");
 const routeController = require("../controllers/listings");
 
 //Add listing to listings
